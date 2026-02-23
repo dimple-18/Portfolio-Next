@@ -12,25 +12,26 @@
   overflow: hidden;
   border-radius: 999px;
 
-  font-family: "Orbitron", sans-serif;
+  font-family: var(--font-orbitron), sans-serif;
 
   transition: transform 0.35s ease, filter 0.35s ease;
-  animation: ltb-gradient 5s ease infinite;
 
-  border: double 4px transparent;
+  /* 2px border */
+  border: double 2px transparent;
+
+  /* Important: animate the border gradient layer */
   background-image:
     linear-gradient(#161a25, #161a25),
-    linear-gradient(
-      137.48deg,
-      #f5434f 10%,
-      #631e29 45%,
-      #000000 67%,
-      #161a25 87%
-    );
+    linear-gradient(90deg,  #631e29, #000000, #161a25);
+
   background-origin: border-box;
   background-clip: content-box, border-box;
 
-  /* slightly more “premium” */
+  /* Key for moving border */
+  background-size: 100% 100%, 300% 300%;
+  background-position: 0 0, 0% 50%;
+  animation: ltb-borderMove 3.5s linear infinite;
+
   box-shadow: 0 18px 70px rgba(0, 0, 0, 0.45);
 }
 
@@ -64,7 +65,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  animation: ltb-starRotate 90s linear infinite;
+  animation: ltb-starRotate 30s linear infinite; 
   background-image: radial-gradient(#ffffff 1px, transparent 1%);
   background-size: 50px 50px;
   opacity: 0.9;
@@ -75,7 +76,7 @@
   content: "";
   position: absolute;
   inset: -30% -10%;
-  animation: ltb-starMove 60s linear infinite;
+  animation: ltb-starMove 18s linear infinite;
   background-image: radial-gradient(#ffffff 1px, transparent 1%);
   background-size: 50px 50px;
   opacity: 0.45;
@@ -121,7 +122,7 @@
 .ltb-btn:active {
   transform: scale(0.98);
   animation: none;
-  border: double 4px #631e29;
+  border: double 2px #631e29;
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -168,6 +169,11 @@
   100% {
     background-position: 0% 50%;
   }
+}
+
+@keyframes ltb-borderMove {
+  0%   { background-position: 0 0, 0% 50%; }
+  100% { background-position: 0 0, 300% 50%; }
 }
 
 /* Accessibility: reduce motion */

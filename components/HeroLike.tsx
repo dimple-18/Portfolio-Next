@@ -1,5 +1,6 @@
 "use client";
 import { motion, Variants } from "framer-motion";
+import LetsTalkButton from "@/components/ui/LetsTalkButton";
 
 const container: Variants = {
   hidden: {},
@@ -73,23 +74,20 @@ export default function HeroLike() {
 
           {/* tiny experience row */}
           <motion.div variants={item} className="mt-6 flex items-center gap-3 text-sm text-white/80">
-            <span className="h-2.5 w-2.5 rounded-full bg-orange-500" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
             <span>Full-Stack • Clean UI • Maintainable Systems</span>
           </motion.div>
 
           {/* buttons */}
-          <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#contact"
-              className="group inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/8 px-6 py-3 text-sm text-white shadow-[0_20px_80px_rgba(0,0,0,0.55)] backdrop-blur transition hover:bg-white/12"
-            >
-              Let’s Talk
-              <span className="transition group-hover:translate-x-0.5">↗</span>
-            </a>
-            <a href="#resume" className="text-sm text-white/60 transition hover:text-white/85">
-              View Resume
-            </a>
-          </motion.div>
+          <motion.div variants={item} className="mt-10 flex flex-wrap items-center justify-center gap-5">
+  <LetsTalkButton text="LET'S TALK" href="#contact" />
+ <a
+  href="#resume"
+  className="ltb-text text-sm tracking-[5px] hover:opacity-90 transition"
+>
+  VIEW RESUME
+</a>
+</motion.div>
         </motion.div>
       </div>
     </section>
