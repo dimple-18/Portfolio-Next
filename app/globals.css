@@ -1,26 +1,45 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html, body { height: 100%; }
+body { overflow-x: hidden; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
 }
+
+.hero-bg {
+  position: relative;
+  isolation: isolate; /* IMPORTANT: creates a stacking context */
+  background: #0b0d10;
+}
+
+/* grid behind */
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* behind content */
+  background-image:
+    linear-gradient(rgba(255,255,255,0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.065) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.25;
+  mask-image: radial-gradient(circle at 50% 45%, black 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* vignette behind */
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  z-index: 0; /* behind content */
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), transparent 55%),
+    radial-gradient(circle at 50% 45%, rgba(59,130,246,0.10), transparent 62%),
+    radial-gradient(circle at 50% 60%, rgba(0,0,0,0.35), rgba(0,0,0,0.82) 58%);
+  pointer-events: none;
+}
+
+.font-sans { font-family: var(--font-inter), ui-sans-serif, system-ui; }
+.font-serif { font-family: var(--font-serif), ui-serif, Georgia; }
