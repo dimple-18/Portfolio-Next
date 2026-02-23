@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap");
+
+.ltb-btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 13rem;
+  height: 3.1rem;
+
+  overflow: hidden;
+  border-radius: 999px;
+
+  font-family: "Orbitron", sans-serif;
+
+  transition: transform 0.35s ease, filter 0.35s ease;
+  animation: ltb-gradient 5s ease infinite;
+
+  border: double 4px transparent;
+  background-image:
+    linear-gradient(#161a25, #161a25),
+    linear-gradient(
+      137.48deg,
+      #f5434f 10%,
+      #631e29 45%,
+      #000000 67%,
+      #161a25 87%
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+
+  /* slightly more “premium” */
+  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.45);
+}
+
+.ltb-text {
+  position: relative;
+  z-index: 2;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #ffffff;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+.ltb-starsWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 999px;
+  transition: 0.5s;
+  backdrop-filter: blur(1rem);
+}
+
+.ltb-stars {
+  position: absolute;
+  inset: -80px;
+  background: transparent;
+}
+
+.ltb-stars::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  animation: ltb-starRotate 90s linear infinite;
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+  opacity: 0.9;
+  transform-origin: center;
+}
+
+.ltb-stars::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10%;
+  animation: ltb-starMove 60s linear infinite;
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+  opacity: 0.45;
+}
+
+.ltb-glow {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  width: 12rem;
+  pointer-events: none;
+}
+
+.ltb-circle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  filter: blur(2rem);
+}
+
+.ltb-c1 {
+  background: rgba(245, 67, 79, 0.64);
+  animation: ltb-orbit 8s linear infinite;
+}
+
+.ltb-c2 {
+  background: rgba(99, 30, 41, 0.7);
+  animation: ltb-orbit 10s linear infinite;
+}
+
+/* Hover */
+.ltb-btn:hover {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+.ltb-btn:hover .ltb-starsWrap {
+  background-color: rgba(22, 26, 37, 0.75);
+}
+
+/* Active */
+.ltb-btn:active {
+  transform: scale(0.98);
+  animation: none;
+  border: double 4px #631e29;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+.ltb-btn:active .ltb-circle {
+  background: #631e29;
+}
+
+/* Animations */
+@keyframes ltb-orbit {
+  from {
+    transform: rotate(0deg) translateX(110px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(110px) rotate(-360deg);
+  }
+}
+
+@keyframes ltb-starMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-135rem);
+  }
+}
+
+@keyframes ltb-starRotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+@keyframes ltb-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .ltb-btn,
+  .ltb-stars::before,
+  .ltb-stars::after,
+  .ltb-c1,
+  .ltb-c2 {
+    animation: none !important;
+    transition: none !important;
+  }
+}
