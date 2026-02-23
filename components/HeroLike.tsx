@@ -21,8 +21,8 @@ const item: Variants = {
 
 export default function HeroLike() {
   return (
-    <section className="hero-bg min-h-[92vh]">
-      <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 md:py-20">
+    <section className="hero-bg min-h-[20vh]">
+      <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 md:py-25">
         <motion.div
           variants={container}
           initial="hidden"

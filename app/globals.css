@@ -6,6 +6,11 @@ body { overflow-x: hidden; }
 body {
   cursor: none;
 }
+body {
+  background: #0b0d10;   /* full page base */
+  color: white;
+  overflow-x: hidden;
+}
 
 .hero-bg {
   position: relative;
@@ -43,3 +48,219 @@ body {
 
 .font-sans { font-family: var(--font-inter), ui-sans-serif, system-ui; }
 .font-serif { font-family: var(--font-serif), ui-serif, Georgia; }
+
+/* ===== Marquee ===== */
+.tech-marquee-track{
+  display:flex;
+  gap:14px;
+  width:max-content;
+  padding-inline: 18px;
+  will-change: transform;
+
+  animation: tech-marquee 18s linear infinite; /* ✅ ADD THIS */
+}
+
+.tech-marquee-track.is-reverse{
+  animation: tech-marquee-reverse 18s linear infinite;
+}
+
+@keyframes tech-marquee{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+@keyframes tech-marquee-reverse{
+  from{ transform: translateX(-50%); }
+  to{ transform: translateX(0); }
+}
+
+.tech-marquee-track:hover{ animation-play-state: paused; }
+
+/* ===== Premium colorful pills ===== */
+.tech-pill{
+  position: relative;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 22px 60px rgba(0,0,0,0.35);
+
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, filter .18s ease;
+  overflow: hidden;
+}
+
+.tech-ico{
+  width:18px;
+  height:18px;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.12));
+}
+
+.tech-name{
+  font-size: 13px;
+  letter-spacing: .2px;
+}
+
+/* shine sweep */
+.tech-shine{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+  transform: translateX(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tech-pill:hover{
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.06);
+}
+
+.tech-pill:hover .tech-shine{
+  opacity: 1;
+  animation: techShine 900ms ease;
+}
+
+@keyframes techShine{
+  to{ transform: translateX(120%); }
+}
+
+/* subtle pulse (very premium) */
+@keyframes techPulse{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-1px); }
+}
+.tech-pill{ animation: techPulse 3.8s ease-in-out infinite; }
+.tech-pill:hover{ animation: none; }
+
+/* ===== tones (background + glow + text tint) ===== */
+/* Blue (React) */
+.tone-blue{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(59,130,246,0.22), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(59,130,246,0.28);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 16px 40px rgba(59,130,246,0.10),
+    0 22px 60px rgba(0,0,0,0.35);
+  color: rgba(219,234,254,0.92);
+}
+
+/* Cyan (Tailwind) */
+.tone-cyan{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(34,211,238,0.22), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(34,211,238,0.26);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 16px 40px rgba(34,211,238,0.10),
+    0 22px 60px rgba(0,0,0,0.35);
+  color: rgba(207,250,254,0.92);
+}
+
+/* Purple (Framer) */
+.tone-purple{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(168,85,247,0.22), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(168,85,247,0.25);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 16px 40px rgba(168,85,247,0.10),
+    0 22px 60px rgba(0,0,0,0.35);
+  color: rgba(243,232,255,0.92);
+}
+
+/* Green (MongoDB) */
+.tone-green{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(34,197,94,0.22), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(34,197,94,0.25);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 16px 40px rgba(34,197,94,0.10),
+    0 22px 60px rgba(0,0,0,0.35);
+  color: rgba(220,252,231,0.92);
+}
+
+/* Lime (Node) */
+.tone-lime{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(132,204,22,0.22), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(132,204,22,0.25);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 16px 40px rgba(132,204,22,0.10),
+    0 22px 60px rgba(0,0,0,0.35);
+  color: rgba(236,252,203,0.92);
+}
+
+/* Orange (Firebase) */
+.tone-orange{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(249,115,22,0.22), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(249,115,22,0.25);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 16px 40px rgba(249,115,22,0.10),
+    0 22px 60px rgba(0,0,0,0.35);
+  color: rgba(255,237,213,0.92);
+}
+
+/* Amber (REST APIs/Postman vibe) */
+.tone-amber{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(245,158,11,0.20), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(245,158,11,0.24);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.25) inset,
+    0 16px 40px rgba(245,158,11,0.09),
+    0 22px 60px rgba(0,0,0,0.35);
+  color: rgba(254,243,199,0.92);
+}
+
+/* Slate (GitHub) */
+.tone-slate{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(148,163,184,0.18), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(148,163,184,0.22);
+  color: rgba(226,232,240,0.92);
+}
+
+/* Zinc (Express) */
+.tone-zinc{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(161,161,170,0.16), transparent 55%),
+    rgba(255,255,255,0.05);
+  border-color: rgba(161,161,170,0.22);
+  color: rgba(244,244,245,0.92);
+}
+
+/* Mono (Next) */
+.tone-mono{
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.10), transparent 55%),
+    rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.92);
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .tech-marquee-track, .tech-pill, .tech-shine{ animation: none !important; }
+}
